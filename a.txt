@@ -1,0 +1,1 @@
+bitsadmin /transfer "ChromeSetup" https://dl.google.com/chrome/install/375.126/chrome_installer.exe %USERPROFILE%\Desktop\chrome_installer.exe
